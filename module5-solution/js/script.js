@@ -23,13 +23,11 @@ var menuItemsUrl =
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
 
-// Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
   var targetElem = document.querySelector(selector);
   targetElem.innerHTML = html;
 };
 
-// Show loading icon inside element identified by 'selector'.
 var showLoading = function (selector) {
   var html = "<div class='text-center'>";
   html += "<img src='images/ajax-loader.gif'></div>";
@@ -74,12 +72,9 @@ function buildAndShowHomeHTML (categories) {
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
     function (homeHtml) {
-      var chosenCategoryShortName = chosenRandomCategory(catgories).short_name;
-      console.log(chosenCategoryShortName);
-
-
+      var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
     
-      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "."+chosenCategoryShortName+".")
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "\'"+chosenCategoryShortName+"\'")
       insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
     },
     false); 
